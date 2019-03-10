@@ -1,4 +1,4 @@
-# connect4
+## connect4
 Simple solution for checking if a given connect4 game position represents a winning position.
 
 The connect-4 game (https://en.wikipedia.org/wiki/Connect_Four) is a
@@ -11,18 +11,17 @@ generator construct. Using generators made the code much cleaner than
 what it was before. Hence, this program serves mostly as an
 example of how to use Python generators.
 
-Sample usage and output
------------------------
+### Sample usage and output
 
-python connect4_v0.py 
- 0123456 
-0ybrybby 
-1rryryry 
-2ryyryry 
-3ybbbyyb 
-4yybrbyb 
-5rrbyrry 
+  python connect4_v0.py
+   0123456 
+  0ybrybby 
+  1rryryry 
+  2ryyryry 
+  3ybbbyyb 
+  4yybrbyb 
+  5rrbyrry 
 
-Done with checking rows
-Done with checking cols
-Color=y, end_pos=(0, 3), dir=LR1-diag
+  Done with checking rows
+  Done with checking cols
+  Color=y, end_pos=(0, 3), dir=LR1-diag
