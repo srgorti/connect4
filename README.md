@@ -11,3 +11,18 @@ generator construct. Using generators made the code much cleaner than
 what it was before. Hence, this program serves mostly as an
 example of how to use Python generators.
 
+Sample usage and output
+-----------------------
+
+python connect4_v0.py 
+ 0123456 
+0ybrybby 
+1rryryry 
+2ryyryry 
+3ybbbyyb 
+4yybrbyb 
+5rrbyrry 
+
+Done with checking rows
+Done with checking cols
+Color=y, end_pos=(0, 3), dir=LR1-diag
