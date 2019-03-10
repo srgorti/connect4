@@ -10,7 +10,7 @@ def fill_colors(b, rows, cols, c1, c2):
     colors = [ 'b', c1, c2, 'b']
     for r in reversed(range(rows)):
         for c in reversed(range(cols)):
-            b[r][c] = colors[random.randrange(0, 4)]           
+            b[r][c] = colors[random.randrange(0, 3)]
             
 def make_board(rows, cols, c1, c2):
     b = list()
@@ -20,25 +20,23 @@ def make_board(rows, cols, c1, c2):
     # TODO: validate board
     return b
 
+def compare_element(current, running, running_count):
+    if current != running:
+        return current, 1
+    else:
+        return running, running_count + 1
+
 # check for four-consecutive of a color
 # the actual slice of consecutive elements
 # are obtained by calling the generator.
 def is_four_connected_itr(gen_func, board, loc):
-    count = 0
+    c, count = None, 0
     for t in gen_func(board, loc):
         v = t[0]
-        if not count:
-            c = v
-            count = 1
-            continue
-        if c == v:
-            count += 1
-            if count == 4 and c != 'b':
-                #print t
-                return t
-        else:
-            c = v
-            count = 1
+        c, count = compare_element(v, c, count)
+        if count == 4 and c != 'b':
+            #print t
+            return t
 
     return False
     
