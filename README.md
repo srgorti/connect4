@@ -25,3 +25,7 @@ python connect4_v0.py.
 Done with checking rows.  
 Done with checking cols.  
 Color=y, end_pos=(0, 3), dir=LR1-diag. 
+
+Note: This program works directly on Python 2.7. To get it working on
+      Python 3, the print statements have to be converted to function
+      format.
