@@ -40,17 +40,17 @@ def is_four_connected_itr(gen_func, board, loc):
 
     return False
     
-def row_walker(board, row):
+def row_gen(board, row):
     cols = len(board[0])
     for c in range(cols):
         yield (board[row][c], (row, c,),)
 
-def col_walker(board, col):
+def col_gen(board, col):
     rows = len(board)
     for r in range(rows):
         yield (board[r][col], (r, col,),)
     
-def diag_lr1_walker(board, row):
+def diag_lr1_gen(board, row):
     cols = len(board[0])
     for c in range(cols):
         yield (board[row][c], (row, c,),)
@@ -58,7 +58,7 @@ def diag_lr1_walker(board, row):
         if row < 0:
             break
     
-def diag_lr2_walker(board, col):
+def diag_lr2_gen(board, col):
     rows = len(board)
     cols = len(board[0])
     for r in reversed(range(rows)):
@@ -67,7 +67,7 @@ def diag_lr2_walker(board, col):
         if col >= cols:
             break
         
-def diag_rl1_walker(board, row):
+def diag_rl1_gen(board, row):
     cols = len(board[0])
     for c in reversed(range(cols)):
         yield (board[row][c], (row, c,),)
@@ -75,7 +75,7 @@ def diag_rl1_walker(board, row):
         if row < 0:
             break
 
-def diag_rl2_walker(board, col):
+def diag_rl2_gen(board, col):
     rows = len(board)
     for r in reversed(range(rows)):
         yield (board[r][col], (r, col,),)
@@ -95,15 +95,15 @@ def walk_and_check(board, walker_descr, walker_fn, n_times):
 def find_connected_four(board):
     rows = len(board)
     cols = len(board[0])
-    all_walkers = [
-        ('rows', row_walker, rows),
-        ('cols', col_walker, cols),
-        ('LR1-diag', diag_lr1_walker, rows),
-        ('RL1-diag', diag_rl1_walker, rows),
-        ('LR2-diag', diag_lr2_walker, cols),
-        ('RL2-diag', diag_rl2_walker, cols),
+    all_generators = [
+        ('rows', row_gen, rows),
+        ('cols', col_gen, cols),
+        ('LR1-diag', diag_lr1_gen, rows),
+        ('RL1-diag', diag_rl1_gen, rows),
+        ('LR2-diag', diag_lr2_gen, cols),
+        ('RL2-diag', diag_rl2_gen, cols),
     ]
-    for descr, fn, count in all_walkers:
+    for descr, fn, count in all_generators:
         res = walk_and_check(board, descr, fn, count)
         if res:
             return res
